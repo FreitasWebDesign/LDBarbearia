@@ -26,6 +26,28 @@ header{
   border-bottom:1px solid #222;
   font-size:24px;
   letter-spacing:2px;
+  position:relative;
+}
+
+/* BOTÃO FINANCEIRO */
+#financeiroBtn{
+  position:absolute;
+  top:10px;
+  left:10px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(45deg,#25D366,#1ebe5d);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+#financeiroBtn:hover{
+  transform:scale(1.1) rotate(-10deg);
+  box-shadow:0 0 15px #25D366;
 }
 
 .banner{display:none}
@@ -117,7 +139,10 @@ footer{
 
 <body>
 
-<header>💈 LD BARBEARIA</header>
+<header>
+💈 LD BARBEARIA
+<button id="financeiroBtn">💈</button>
+</header>
 
 <div class="section">
 <h2>Escolha seus serviços</h2>
@@ -139,7 +164,6 @@ footer{
 
 <div class="total" id="total">Total: R$ 0</div>
 
-<!-- DIA -->
 <div id="etapaDia" style="display:none; margin-top:20px;">
   <h3>Escolha o dia</h3>
   <div class="services">
@@ -152,7 +176,6 @@ footer{
   </div>
 </div>
 
-<!-- HORÁRIO -->
 <div id="etapaHora" style="display:none; margin-top:20px;">
   <h3>Escolha o horário</h3>
   <div class="services">
@@ -188,6 +211,12 @@ footer{
 </footer>
 
 <script>
+// BOTÃO FINANCEIRO REDIRECIONA
+document.getElementById("financeiroBtn").addEventListener("click", ()=>{
+  window.open("https://freitaswebdesign.github.io/LDBarbearia-Financeiro/", "_blank");
+});
+
+// RESTO DO SISTEMA (SEM ALTERAR)
 const services = document.querySelectorAll('.service');
 const totalEl = document.getElementById('total');
 const btn = document.getElementById('whatsappBtn');
