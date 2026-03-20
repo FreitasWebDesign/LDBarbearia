@@ -5,14 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LD Barbearia</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
+/* FUNDO COM IMAGEM */
 body{
   font-family:'Poppins',sans-serif;
   background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)),
   url('https://i.postimg.cc/VvQyTWZV/ld-barbearia.png') center/cover fixed;
   color:#fff;
 }
+
 header{
   padding:15px;
   text-align:center;
@@ -22,79 +26,102 @@ header{
   border-bottom:1px solid #222;
   font-size:24px;
   letter-spacing:2px;
-  position:relative;
 }
-#financeiroBtn {
-  position:absolute;
-  top:10px;
-  left:10px;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#1ebe5d,#25D366);
-  color:#fff;
+
+.banner{display:none}
+
+.section{
+  padding:40px 20px;
+  text-align:center;
+}
+
+h2{
+  margin-bottom:20px;
   font-size:24px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  border:none;
-  cursor:pointer;
-  box-shadow:0 4px 10px rgba(0,0,0,0.3);
-  transition:all 0.3s ease;
-  z-index:1001;
 }
-#financeiroBtn:hover { transform:scale(1.1) rotate(-10deg); box-shadow:0 6px 15px rgba(0,0,0,0.4); }
 
-.section{padding:40px 20px;text-align:center;}
-h2{margin-bottom:20px;font-size:24px;}
-.services{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
-.service{ background:rgba(20,20,20,0.9); padding:12px; border-radius:12px; cursor:pointer; transition:.3s;}
-.service:hover{ background:#25D366; color:#000; transform:scale(1.08);}
-.service.active{ background:#25D366; color:#000;}
-.total{margin-top:20px;font-size:24px;font-weight:bold;}
-.btn{ display:inline-block; margin-top:20px; padding:15px 30px; background:linear-gradient(45deg,#25D366,#1ebe5d); color:#fff; text-decoration:none; border-radius:40px; font-weight:bold; transition:.3s;}
-.btn:hover{ transform:scale(1.1); box-shadow:0 0 20px #25D366; }
-.gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;}
-.gallery img{width:220px;border-radius:12px;transition:.4s;box-shadow:0 0 15px rgba(0,0,0,0.7);}
-.gallery img:hover{transform:scale(1.1) rotate(1deg);}
-footer{padding:20px;text-align:center;color:#aaa;}
+.services{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+}
 
-/* MODAL LOGIN */
-#loginModal{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:1002;}
-#loginModalContent{ background:#111; padding:30px; border-radius:15px; text-align:center; width:90%; max-width:400px;}
-#loginModalContent input{ width:100%; margin:10px 0; padding:12px; border-radius:10px; border:none; font-size:16px;}
-#loginModalContent button{ width:100%; padding:12px; border:none; border-radius:10px; background:#25D366; color:#000; font-weight:bold; font-size:16px; cursor:pointer; transition:0.3s;}
-#loginModalContent button:hover{ background:#1ebe5d; }
+.service{
+  background:rgba(20,20,20,0.9);
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.3s;
+}
 
-/* FINANCEIRO MODERNO */
-#controleDiv{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); padding:20px; overflow:auto; z-index:1000; color:#fff;}
-#controleDiv h2{margin-bottom:20px; text-align:center;}
-#cortesCards{display:flex; flex-wrap:wrap; gap:15px; justify-content:center; margin-bottom:20px;}
-.corteCard{ width:150px; background:linear-gradient(45deg,#25D366,#1ebe5d); color:#000; font-weight:600; text-align:center; padding:12px; border-radius:12px; cursor:pointer; transition:0.3s; white-space:pre-line; border:2px solid transparent; }
-.corteCard.selected{ box-shadow:0 0 25px #25D366; transform:scale(1.05); border:2px solid #fff; animation: pulse 0.5s;}
-@keyframes pulse{0%{transform:scale(1.05);}50%{transform:scale(1.1);}100%{transform:scale(1.05);}}
+.service:hover{
+  background:#25D366;
+  color:#000;
+  transform:scale(1.08);
+}
 
-#valorCard{ min-width:200px; padding:20px; border-radius:15px; background:linear-gradient(135deg,#25D366,#1ebe5d); color:#000; font-weight:bold; text-align:center; font-size:22px; box-shadow:0 4px 15px rgba(0,0,0,0.3);}
-#limparBtn{ padding:12px 20px; border:none; border-radius:12px; background:#ff4d4d; color:#000; font-weight:bold; cursor:pointer; transition:0.3s;}
-#limparBtn:hover{ transform:scale(1.05); box-shadow:0 0 15px #25D366;}
-#adicionarBtn{ padding:12px 20px; border:none; border-radius:12px; background:#1a8f3c; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; margin-left:10px;}
-#adicionarBtn:hover{ transform:scale(1.05); box-shadow:0 0 15px #25D366;}
-#controleDiv table{ width:100%; border-collapse:collapse; margin-top:15px; }
-#controleDiv th, #controleDiv td{ border:1px solid #fff; padding:10px; text-align:left; }
-#controleDiv tr:hover{background:#333;}
-.totalCard{ background:linear-gradient(135deg,#25D366,#1ebe5d); color:#000; padding:20px; border-radius:15px; text-align:center; min-width:120px; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.3);}
-#totaisDiv{ display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px;}
-.removerIcon{ cursor:pointer; color:#ff4d4d; font-size:18px; text-align:center; }
+.service.active{
+  background:#25D366;
+  color:#000;
+}
+
+.total{
+  margin-top:20px;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:15px 30px;
+  background:linear-gradient(45deg,#25D366,#1ebe5d);
+  color:#fff;
+  text-decoration:none;
+  border-radius:40px;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px #25D366;
+}
+
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+}
+
+.gallery img{
+  width:220px;
+  border-radius:12px;
+  transition:.4s;
+  box-shadow:0 0 15px rgba(0,0,0,0.7);
+}
+
+.gallery img:hover{
+  transform:scale(1.1) rotate(1deg);
+}
+
+footer{
+  padding:20px;
+  text-align:center;
+  color:#aaa;
+}
 </style>
 </head>
+
 <body>
 
-<header>💈 LD BARBEARIA
-  <button id="financeiroBtn" title="Controles Financeiros">💈</button>
-</header>
+<header>💈 LD BARBEARIA</header>
 
 <div class="section">
 <h2>Escolha seus serviços</h2>
+
 <div class="services" id="services">
   <div class="service" data-name="Corte Degradê Navalhado" data-price="30">Degradê Navalhado - R$30</div>
   <div class="service" data-name="Corte Degradê Máquina" data-price="30">Degradê Máquina - R$30</div>
@@ -109,7 +136,39 @@ footer{padding:20px;text-align:center;color:#aaa;}
   <div class="service" data-name="Relaxamento" data-price="50">Relaxamento - R$50</div>
   <div class="service" data-name="Luzes" data-price="130">Luzes - R$130</div>
 </div>
+
 <div class="total" id="total">Total: R$ 0</div>
+
+<!-- DIA -->
+<div id="etapaDia" style="display:none; margin-top:20px;">
+  <h3>Escolha o dia</h3>
+  <div class="services">
+    <div class="service dia">Segunda</div>
+    <div class="service dia">Terça</div>
+    <div class="service dia">Quarta</div>
+    <div class="service dia">Quinta</div>
+    <div class="service dia">Sexta</div>
+    <div class="service dia">Sábado</div>
+  </div>
+</div>
+
+<!-- HORÁRIO -->
+<div id="etapaHora" style="display:none; margin-top:20px;">
+  <h3>Escolha o horário</h3>
+  <div class="services">
+    <div class="service hora">09:00</div>
+    <div class="service hora">10:00</div>
+    <div class="service hora">11:00</div>
+    <div class="service hora">14:00</div>
+    <div class="service hora">15:00</div>
+    <div class="service hora">16:00</div>
+    <div class="service hora">17:00</div>
+    <div class="service hora">18:00</div>
+    <div class="service hora">19:00</div>
+  </div>
+</div>
+
+<a class="btn" id="whatsappBtn" target="_blank">Agendar no WhatsApp</a>
 </div>
 
 <div class="section">
@@ -124,142 +183,87 @@ footer{padding:20px;text-align:center;color:#aaa;}
 </div>
 </div>
 
-<footer>© 2026 LD Barbearia</footer>
-
-<!-- LOGIN -->
-<div id="loginModal">
-  <div id="loginModalContent">
-    <h2>Login</h2>
-    <input type="password" id="senhaInput" placeholder="Digite a senha">
-    <button id="loginBtn">Entrar</button>
-  </div>
-</div>
-
-<!-- FINANCEIRO -->
-<div id="controleDiv">
-  <h2>Controles Financeiros 💈</h2>
-  <div id="cortesCards"></div>
-  <div style="display:flex; justify-content:center; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
-    <div id="valorCard">Total: R$ 0</div>
-    <button id="adicionarBtn">Adicionar Seleção</button>
-    <button id="limparBtn">Limpar Registros</button>
-  </div>
-  <table id="tabelaCortes">
-    <thead>
-      <tr><th>Corte(s)</th><th>Valor</th><th>Data</th><th>Remover</th></tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <div id="totaisDiv">
-    <div class="totalCard">Hoje<br>R$ <span id="totalDia">0</span></div>
-    <div class="totalCard">Semana<br>R$ <span id="totalSemana">0</span></div>
-    <div class="totalCard">Mês<br>R$ <span id="totalMes">0</span></div>
-  </div>
-</div>
+<footer>
+© 2026 LD Barbearia
+</footer>
 
 <script>
-// ===== LOGIN =====
-const financeiroBtn=document.getElementById('financeiroBtn');
-const loginModal=document.getElementById('loginModal');
-const loginBtn=document.getElementById('loginBtn');
-const senhaInput=document.getElementById('senhaInput');
-const controleDiv=document.getElementById('controleDiv');
-function hashSenha(s){let hash=0;for(let i=0;i<s.length;i++){hash=((hash<<5)-hash)+s.charCodeAt(i);hash=hash&hash;}return hash;}
-const senhaHash=hashSenha('ldbarbearia'); // senha escondida
-financeiroBtn.addEventListener('click',()=>{loginModal.style.display='flex';});
-loginBtn.addEventListener('click',()=>{
-  if(hashSenha(senhaInput.value)===senhaHash){loginModal.style.display='none'; senhaInput.value=''; controleDiv.style.display='block'; preencherCortes(); atualizarTabela(); atualizarFechamento();}
-  else alert("Senha incorreta!");
-});
+const services = document.querySelectorAll('.service');
+const totalEl = document.getElementById('total');
+const btn = document.getElementById('whatsappBtn');
 
-// ===== FINANCEIRO =====
-const cortesCardsDiv=document.getElementById('cortesCards');
-const valorCard=document.getElementById('valorCard');
-const tabelaCortes=document.querySelector('#tabelaCortes tbody');
-const adicionarBtn=document.getElementById('adicionarBtn');
-const limparBtn=document.getElementById('limparBtn');
-let cortesSelecionados=[]; 
-let cortesRegistrados=JSON.parse(localStorage.getItem('cortes')||'[]');
+const etapaDia = document.getElementById('etapaDia');
+const etapaHora = document.getElementById('etapaHora');
 
-function preencherCortes(){
-  cortesCardsDiv.innerHTML='';
-  document.querySelectorAll('.service').forEach(s=>{
-    if(!s.classList.contains('dia')&&!s.classList.contains('hora')){
-      const card=document.createElement('div');
-      card.className='corteCard';
-      card.innerText=s.dataset.name+'\nR$'+s.dataset.price;
-      card.dataset.name=s.dataset.name;
-      card.dataset.price=parseFloat(s.dataset.price);
-      card.addEventListener('click', ()=>{
-        if(cortesSelecionados.includes(card.dataset.name)){
-          cortesSelecionados=cortesSelecionados.filter(c=>c!==card.dataset.name);
-          card.classList.remove('selected');
-        } else {
-          cortesSelecionados.push(card.dataset.name);
-          card.classList.add('selected');
-        }
-        atualizarValor();
-      });
-      cortesCardsDiv.appendChild(card);
-    }
-  });
-}
+let selected = [];
+let diaSelecionado = '';
+let horaSelecionada = '';
 
-function atualizarValor(){
-  let total=0;
-  cortesSelecionados.forEach(nome=>{
-    const s=document.querySelector(`.service[data-name="${nome}"]`);
-    total+=parseFloat(s.dataset.price);
-  });
-  valorCard.innerText='Total: R$ '+total.toFixed(2);
-}
+services.forEach(s => {
+  if(!s.classList.contains('dia') && !s.classList.contains('hora')){
+    s.addEventListener('click', () => {
+      s.classList.toggle('active');
 
-function atualizarTabela(){
-  tabelaCortes.innerHTML='';
-  cortesRegistrados.forEach((c,index)=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${c.corte}</td><td>R$ ${c.valor.toFixed(2)}</td><td>${c.data}</td><td><span class="removerIcon" data-index="${index}">🗑️</span></td>`;
-    tabelaCortes.appendChild(tr);
-  });
-  document.querySelectorAll('.removerIcon').forEach(icon=>{
-    icon.addEventListener('click',()=>{
-      const i=parseInt(icon.dataset.index);
-      cortesRegistrados.splice(i,1);
-      localStorage.setItem('cortes',JSON.stringify(cortesRegistrados));
-      atualizarTabela(); atualizarFechamento();
+      const name = s.dataset.name;
+      const price = parseInt(s.dataset.price);
+
+      if(s.classList.contains('active')){
+        selected.push({name, price});
+      } else {
+        selected = selected.filter(item => item.name !== name);
+      }
+
+      etapaDia.style.display = 'block';
+      update();
     });
-  });
-}
-
-function atualizarFechamento(){
-  const hoje=new Date();
-  const totalDia=cortesRegistrados.filter(c=>c.data===hoje.toLocaleDateString()).reduce((acc,c)=>acc+c.valor,0);
-  const totalSemana=cortesRegistrados.filter(c=>{const d=new Date(c.data); const weekStart=new Date(hoje); weekStart.setDate(hoje.getDate()-hoje.getDay()); return d>=weekStart && d<=hoje;}).reduce((acc,c)=>acc+c.valor,0);
-  const totalMes=cortesRegistrados.filter(c=>{const d=new Date(c.data); return d.getMonth()===hoje.getMonth() && d.getFullYear()===hoje.getFullYear();}).reduce((acc,c)=>acc+c.valor,0);
-  document.getElementById('totalDia').innerText=totalDia.toFixed(2);
-  document.getElementById('totalSemana').innerText=totalSemana.toFixed(2);
-  document.getElementById('totalMes').innerText=totalMes.toFixed(2);
-}
-
-// ===== BOTÃO ADICIONAR =====
-adicionarBtn.addEventListener('click',()=>{
-  if(cortesSelecionados.length===0){ alert("Selecione pelo menos 1 corte!"); return; }
-  const data=new Date().toLocaleDateString();
-  const total=cortesSelecionados.reduce((acc,nome)=>{
-    const s=document.querySelector(`.service[data-name="${nome}"]`);
-    return acc+parseFloat(s.dataset.price);
-  },0);
-  cortesRegistrados.push({corte:cortesSelecionados.join(' e '), valor:total, data:data});
-  localStorage.setItem('cortes',JSON.stringify(cortesRegistrados));
-  cortesSelecionados=[]; preencherCortes(); atualizarTabela(); atualizarFechamento(); atualizarValor();
-});
-
-// ===== BOTÃO LIMPAR =====
-limparBtn.addEventListener('click',()=>{
-  if(confirm('Deseja realmente limpar todos os registros?')){
-    cortesRegistrados=[]; localStorage.removeItem('cortes'); atualizarTabela(); atualizarFechamento(); valorCard.innerText='Total: R$ 0';
   }
 });
+
+document.querySelectorAll('.dia').forEach(d => {
+  d.addEventListener('click', () => {
+    document.querySelectorAll('.dia').forEach(btn => btn.classList.remove('active'));
+    d.classList.add('active');
+
+    diaSelecionado = d.innerText;
+    etapaHora.style.display = 'block';
+    update();
+  });
+});
+
+document.querySelectorAll('.hora').forEach(h => {
+  h.addEventListener('click', () => {
+    document.querySelectorAll('.hora').forEach(btn => btn.classList.remove('active'));
+    h.classList.add('active');
+
+    horaSelecionada = h.innerText;
+    update();
+  });
+});
+
+function update(){
+  let total = 0;
+  let names = [];
+
+  selected.forEach(item => {
+    total += item.price;
+    names.push(item.name);
+  });
+
+  totalEl.innerText = 'Total: R$ ' + total;
+
+  let message = '';
+
+  if(diaSelecionado && horaSelecionada){
+    message = `Olá! Gostaria de agendar um horário para ${names.join(' + ')} no dia ${diaSelecionado} às ${horaSelecionada}. Ainda está disponível?`;
+  } else if(names.length > 0){
+    message = `Olá! Gostaria de agendar um horário para ${names.join(' + ')}.`;
+  } else {
+    message = 'Olá! Gostaria de agendar um horário.';
+  }
+
+  btn.href = `https://wa.me/5517991544075?text=${encodeURIComponent(message)}`;
+}
 </script>
+
 </body>
 </html>
